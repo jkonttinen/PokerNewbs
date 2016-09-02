@@ -30,7 +30,7 @@ void GameSituation::compare_hands(const std::vector<PokerHand*>& phVect)
             pocketCards[i]->add_result(2);
         }
     }
-//    delete help.back();
+
     help.pop_back();
     if (help.size() > 1) compare_hands(help);
 }
@@ -45,20 +45,39 @@ PokerHand* GameSituation::on_the_river(const size_t& num)
             std::vector<Card*> tc = tableCards->get_cards();
             cards.insert(cards.end(),tc.begin(),tc.end());
 
-            for (size_t i = 0; i < 6; i++)
-                for (size_t j = i+1; j < 7; j++)
+            for (size_t i0 = 0; i0 < 3; i0++)
+            {
+                std::vector<Card*> hand;
+                hand.push_back(cards[i0]);
+                for (size_t i1 = i0+1; i1 < 4; i1++)
                 {
-                    std::vector<Card*> hand;
-                    for (size_t k = 0; k < 7; k++)
-                        if (k != j && k != i) hand.push_back(cards[k]);
-
-                    PokerHand currentHand(hand);
-                    if (*best < currentHand)
+                    hand.push_back(cards[i1]);
+                    for (size_t i2 = i1+1; i2 < 5; i2++)
                     {
-                        delete best;
-                        best = new PokerHand(hand);
+                        hand.push_back(cards[i2]);
+                        for (size_t i3 = i2+1; i3 < 6; i3++)
+                        {
+                            hand.push_back(cards[i3]);
+                            for (size_t i4 = i3+1; i4 < 7; i4++)
+                            {
+                                hand.push_back(cards[i4]);
+
+                                PokerHand currentHand(hand);
+                                if (*best < currentHand)
+                                {
+                                    delete best;
+                                    best = new PokerHand(hand);
+                                }
+                                hand.pop_back();
+                            }
+                            hand.pop_back();
+                        }
+                        hand.pop_back();
                     }
+                    hand.pop_back();
                 }
+                hand.pop_back();
+            }
         }
     return best;
 }

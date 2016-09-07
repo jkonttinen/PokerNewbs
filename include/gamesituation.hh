@@ -11,7 +11,7 @@ public:
     GameSituation(Deck* deck, TableCards* tc, std::vector<PocketCards*> pc):deck(deck),tableCards(tc),pocketCards(pc) {}
     virtual ~GameSituation();
 
-    void compare_hands(const std::vector<PokerHand*>&);
+    std::vector<size_t> compare_hands(const std::vector<PokerHand*>&, const std::vector<size_t>&, const size_t&);
 
     PokerHand* on_the_river(const size_t &);
     void on_the_turn(const size_t &);

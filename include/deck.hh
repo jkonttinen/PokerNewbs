@@ -50,6 +50,7 @@ public:
     PocketCards():wins(0),draws(0),losses(0){}
     void add_result(const size_t&);
     std::string get_results()const;
+    std::string get_results_pct()const;
 private:
     size_t wins;
     size_t draws;
@@ -75,7 +76,7 @@ public:
         unranked = -1
     };
 
-    std::vector<std::string> hand = {"high card", "pair","two pair","trips","straight","flush","full_house","quads","straight flush"};
+    const std::vector<std::string> hand = {"high card", "pair","two pair","trips","straight","flush","full_house","quads","straight flush"};
 
     enum rank get_rank()const{return handRank;}
     std::vector<size_t> get_secRank()const{return secRank;}

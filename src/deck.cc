@@ -44,8 +44,9 @@ std::ostream& operator<< (std::ostream& os, const CardContainer& cards)
     auto c = cards.get_cards();
     for (size_t i = 0; i < c.size(); i++)
     {
-        os << cards.values[c[i]->get_value()-2] << cards.suits[c[i]->get_suit()] << std::endl;
+        os << cards.values[c[i]->get_value()-2] << cards.suits[c[i]->get_suit()] <<" ";
     }
+
     return os;
 }
 
@@ -66,7 +67,7 @@ void Deck::shuffle()
 
 void PocketCards::add_result(const size_t& num)
 {
-    if (num == 0) wins++;
+    if (num == 2) wins++;
     else if (num == 1) draws++;
     else losses++;
 }
@@ -77,6 +78,15 @@ std::string PocketCards::get_results()const
     str << "Wins: " << wins << std::endl;
     str << "Losses: " << losses << std::endl;
     str << "Ties: " << draws << std::endl;
+
+    return str.str();
+}
+
+std::string PocketCards::get_results_pct()const
+{
+    std::stringstream str;
+    size_t sum = wins+losses+draws;
+    str << "Equity: " <<  100*((1.0 * wins) / sum + 0.5*(1.0*draws / sum)) << std::endl;
 
     return str.str();
 }

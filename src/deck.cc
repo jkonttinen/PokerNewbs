@@ -159,10 +159,10 @@ bool PokerHand::operator<(const PokerHand& hand)const
 
     size_t i = 4;
     std::vector<Card*> help = hand.get_cards();
-    while(!(*cards[i] < *help[i]) && !(*help[i] < *cards[i]))
+    while(!(cards[i]->get_value() < help[i]->get_value()) && !(help[i]->get_value() < cards[i]->get_value()))
     {
         i--;
         if (i == 0) break;
     }
-    return (*(cards[i]) < *(help[i]));
+    return ((cards[i]->get_value()) < (help[i]->get_value()));
 }

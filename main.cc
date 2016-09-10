@@ -56,7 +56,7 @@ int main()
     for (size_t i = 0;i < phVect.size();i++)
     {
         if (i != 0 && *phVect[i-1] <*phVect[i]) value++;
-        file << value << " " << *phVect[i] << std::endl;
+        file << *phVect[i] << " " << value << std::endl;
     }
 
     for (auto it = phVect.begin();it != phVect.end();it++)

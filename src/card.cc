@@ -19,5 +19,6 @@ size_t Card::get_value() const
 bool Card::operator<(const Card& card) const
 {
     size_t card1 = this->value, card2 = card.get_value();
+    if (card1 == card2) return this->suit < card.get_suit();
     return card1 < card2;
 }

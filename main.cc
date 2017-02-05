@@ -16,7 +16,7 @@ int main()
 
 
     std::vector<PocketCards*> pcVect;
-    for (size_t i = 0;i < 2;i++)
+    for (size_t i = 0;i < 4;i++)
     {
         PocketCards* pc = new PocketCards();
         for (size_t j = 0;j < 2;j++)
@@ -28,8 +28,8 @@ int main()
 
     GameSituation gs(deck,tc,pcVect);
 
-    std::cout << *deck << std::endl<< std::endl;
-//    std::cout << *tc << std::endl<< std::endl;
+//    std::cout << *deck << std::endl<< std::endl;
+    std::cout << *tc << std::endl<< std::endl;
     gs.preflop(0);
 
     for (size_t i = 0;i < pcVect.size();i++)
